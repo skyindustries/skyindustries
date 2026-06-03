@@ -1,9 +1,14 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sky Industries | Premium Electrical Raw Materials</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="description" content="Sky Industries - High-Capacity Manufacturing & Precision Global Supply of Premium Grade Electrical Raw Components.">
+
     <style>
         /* --- HIGH-END DESIGN SYSTEM & VARIABLES --- */
         :root {
@@ -18,7 +23,7 @@
             --accent-blue: #007BFF;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --max-width: 1440px; /* Expanded for premium ultra-wide display screens */
+            --max-width: 1440px; 
         }
 
         /* --- GLOBAL SMOOTH RESETS --- */
@@ -94,6 +99,7 @@
             z-index: 5;
             overflow: hidden;
             border: none;
+            text-align: center;
         }
 
         .btn-primary {
@@ -203,6 +209,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
+            position: relative;
         }
 
         /* Combined Logo Brand Wrapper */
@@ -210,6 +217,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            z-index: 1010;
         }
 
         .logo-block img {
@@ -233,6 +241,35 @@
 
         .brand-title span {
             color: var(--primary-blue);
+        }
+
+        /* Navigation Links & Functional Mobile Toggle Container */
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pure CSS Hidden Checkbox for Mobile Triggering */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Animated Hamburger Icon Style */
+        .hamburger-label {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1010;
+        }
+
+        .hamburger-label .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #002855;
+            transition: all 0.4s ease-in-out;
+            border-radius: 2px;
         }
 
         .nav-links {
@@ -281,7 +318,6 @@
             overflow: hidden;
         }
 
-        /* Interactive Animation Canvas Graphic */
         #heroCanvas {
             position: absolute;
             top: 0;
@@ -544,7 +580,6 @@
             overflow: hidden;
         }
 
-        /* Moving Abstract Techno Panel Grid Replacing any Background Images */
         .assurance-graphic-side {
             flex: 1 1 600px;
             min-height: 400px;
@@ -672,23 +707,6 @@
 
         .bar-line:nth-child(2)::after { animation-delay: 0.7s; }
         .bar-line:nth-child(3)::after { animation-delay: 1.4s; }
-
-        @keyframes floatModule {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-15px) rotate(1deg); }
-        }
-        @keyframes waveFlow {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @keyframes pulseNode {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-        }
-        @keyframes pulseBar {
-            0% { left: -30%; }
-            100% { left: 100%; }
-        }
 
         .assurance-graphic-side::before {
             content: '';
@@ -865,6 +883,23 @@
             100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
+        @keyframes floatModule {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(1deg); }
+        }
+        @keyframes waveFlow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes pulseNode {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+        @keyframes pulseBar {
+            0% { left: -30%; }
+            100% { left: 100%; }
+        }
+
         /* --- RESPONSIVE DEVICE COMPLIANCE --- */
         @media (max-width: 1200px) {
             .hero h1 { font-size: 4rem; }
@@ -873,21 +908,66 @@
         @media (max-width: 992px) {
             .hero h1 { font-size: 3.4rem; }
             .assurance-text { padding: 70px 6%; }
+            
+            /* Show Mobile Hamburger UI Elements */
+            .hamburger-label {
+                display: block;
+            }
+
+            /* Shift Navigation panel to an off-screen mobile drawer overlay */
+            .nav-links {
+                position: fixed;
+                top: 86px; /* Below standard header bar spacing */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 86px);
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding-top: 50px;
+                transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            /* Toggle Action via CSS Checkbox Control Selector Rules */
+            #menu-toggle:checked ~ .nav-links {
+                left: 0;
+            }
+
+            /* Hamburger transform states to clean '✕' layout shape */
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background-color: var(--primary-blue);
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background-color: var(--primary-blue);
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 25px;
-            }
-            .hero h1 { font-size: 2.5rem; }
+            .logo-block img { height: 55px; }
+            .brand-title { font-size: 1.3rem; letter-spacing: 0.5px; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: 1px; }
             .hero p { font-size: 1.15rem; }
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
+            .hero-btns { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 320px; }
             .section-title { font-size: 2.2rem; }
+            .motto-content h2 { font-size: 1.5rem; letter-spacing: 1px; }
+            .metric-card h3 { font-size: 2.8rem; }
+            .assurance-text h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -899,7 +979,16 @@
                 <img src="logo.png" alt="Sky Industries Logo Icon">
                 <div class="brand-title">Sky <span>Industries</span></div>
             </div>
-            <nav>
+            
+            <nav class="nav-menu-wrapper">
+                <input type="checkbox" id="menu-toggle">
+                
+                <label for="menu-toggle" class="hamburger-label">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="products.html">Products</a></li>
@@ -1106,25 +1195,29 @@
     <script>
         // --- 0. BLUE SPARKLING CURSOR TRAIL ENGINE ---
         window.addEventListener('mousemove', function(e) {
-            // Limits frequency slightly to avoid overcrowding the screen canvas
             if (Math.random() > 0.4) { 
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = e.clientX + 'px';
                 sparkle.style.top = e.clientY + 'px';
                 
-                // Randomizes tiny sizes slightly for organic feel
                 const customSize = Math.random() * 5 + 4;
                 sparkle.style.width = customSize + 'px';
                 sparkle.style.height = customSize + 'px';
 
                 document.body.appendChild(sparkle);
 
-                // Auto cleans nodes from domestic tree after fade
                 setTimeout(() => {
                     sparkle.remove();
                 }, 800);
             }
+        });
+
+        // Close dynamic mobile nav panel automatically if user selects a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
         });
 
         // --- 1. INTERACTIVE INTERIOR CANVAS MOLECULAR MATRIX ---
@@ -1168,7 +1261,6 @@
                 if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
                 if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
 
-                // Mouse interaction flow mapping
                 if (mouse.x != null && mouse.y != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -1199,7 +1291,6 @@
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Connective matrix line calculation loops
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
                 particlesArray[i].draw();
