@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Sky Industries - Corporate Profile</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="description" content="Learn more about Sky Industries - Forging structural integrity and manufacturing absolute electrical protection mechanisms.">
+
     <style>
         /* --- HIGH-END DESIGN SYSTEM & VARIABLES --- */
         :root {
@@ -95,12 +100,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
+            position: relative;
         }
 
         .logo-block {
             display: flex;
             align-items: center;
             gap: 15px;
+            z-index: 1010;
         }
 
         .logo-block img {
@@ -119,10 +126,40 @@
             color: #002855;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            position: relative;
         }
 
         .brand-title span {
             color: var(--primary-blue);
+        }
+
+        /* Navigation Links & Functional Mobile Toggle Container */
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pure CSS Hidden Checkbox for Mobile Triggering */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Animated Hamburger Icon Style */
+        .hamburger-label {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1010;
+        }
+
+        .hamburger-label .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #002855;
+            transition: all 0.4s ease-in-out;
+            border-radius: 2px;
         }
 
         .nav-links {
@@ -203,18 +240,6 @@
             position: relative;
             z-index: 2;
             font-weight: 300;
-        }
-
-        /* --- DYNAMIC TRANSITION INTERSECTORS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* --- COMPANY OVERVIEW SECTION --- */
@@ -527,10 +552,60 @@
             font-size: 0.88rem;
         }
 
-        /* --- MOBILE ADAPTATION SYSTEM --- */
+        /* --- RESPONSIVE DEVICE COMPLIANCE --- */
         @media (max-width: 992px) {
             .overview-grid { grid-template-columns: 1fr; }
             .overview-visual { min-height: 300px; }
+            
+            /* Show Mobile Hamburger UI Elements */
+            .hamburger-label {
+                display: block;
+            }
+
+            /* Shift Navigation panel to an off-screen mobile drawer overlay */
+            .nav-links {
+                position: fixed;
+                top: 86px; /* Below standard header bar spacing */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 86px);
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding-top: 50px;
+                transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            /* Toggle Action via CSS Checkbox Control Selector Rules */
+            #menu-toggle:checked ~ .nav-links {
+                left: 0;
+            }
+
+            /* Hamburger transform states to clean '✕' layout shape */
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background-color: var(--primary-blue);
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background-color: var(--primary-blue);
+            }
+
+            /* Mobile Timeline Layout Readjustments */
             .history-tree::before { left: 20px; }
             .history-node { width: 100%; flex-direction: row !important; justify-content: flex-start; padding-left: 50px; }
             .history-content { width: 100%; }
@@ -539,7 +614,8 @@
         }
 
         @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 25px; }
+            .logo-block img { height: 55px; }
+            .brand-title { font-size: 1.3rem; letter-spacing: 0.5px; }
             .page-banner h1 { font-size: 2.6rem; }
             .section-title { font-size: 2.2rem; }
         }
@@ -553,7 +629,16 @@
                 <img src="logo.png" alt="Sky Industries Logo Icon">
                 <div class="brand-title">Sky <span>Industries</span></div>
             </div>
-            <nav>
+            
+            <nav class="nav-menu-wrapper">
+                <input type="checkbox" id="menu-toggle">
+                
+                <label for="menu-toggle" class="hamburger-label">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
@@ -696,6 +781,13 @@
                     sparkle.remove();
                 }, 800);
             }
+        });
+
+        // Close dynamic mobile nav panel automatically if user selects a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
         });
 
         // --- 2. SCROLL REVEAL VIEW INITIATOR ---
