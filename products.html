@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Sky Industries - Premium Electrical Catalog</title>
-    
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <meta name="description" content="Explore the Sky Industries catalog featuring high-grade industrial PVC casing patti, conduit pipes, and installation accessories.">
-
     <style>
         /* --- HIGH-END DESIGN SYSTEM & VARIABLES --- */
         :root {
@@ -65,7 +60,7 @@
             margin: 0 auto;
         }
 
-        /* Sparkle Style Element */
+        /* Tiny Sparkle Style Element */
         .sparkle {
             position: fixed;
             width: 6px;
@@ -84,23 +79,6 @@
             100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
         }
 
-        /* Electrical Click Spark Effect */
-        .electric-spark {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background-color: #E0FFFF; /* Electric Cyan */
-            pointer-events: none;
-            z-index: 10000;
-            box-shadow: 0 0 10px #00F0FF, 0 0 20px #00F0FF;
-            animation: electricBurst 0.4s ease-out forwards;
-        }
-
-        @keyframes electricBurst {
-            0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; }
-        }
-
         /* --- STICKY NAVIGATION HEADER --- */
         header {
             background-color: rgba(255, 255, 255, 0.9);
@@ -117,20 +95,22 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            position: relative;
         }
 
         .logo-block {
             display: flex;
             align-items: center;
             gap: 15px;
-            z-index: 1010;
         }
 
         .logo-block img {
             height: 70px;
             width: auto;
             transition: var(--transition-smooth);
+        }
+
+        .logo-block:hover img {
+            transform: rotate(-5deg) scale(1.05);
         }
 
         .brand-title {
@@ -145,38 +125,387 @@
             color: var(--primary-blue);
         }
 
-        /* --- NAVIGATION --- */
-        .nav-menu-wrapper { display: flex; align-items: center; }
-        #menu-toggle { display: none; }
-        .hamburger-label { display: none; cursor: pointer; padding: 10px; z-index: 1010; }
-        .hamburger-label .bar { display: block; width: 28px; height: 3px; margin: 5px auto; background-color: #002855; transition: all 0.4s ease-in-out; border-radius: 2px; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { font-weight: 700; color: #2A2C2E; font-size: 0.95rem; transition: var(--transition-smooth); position: relative; padding: 10px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background-color: var(--primary-blue); transition: var(--transition-smooth); border-radius: 4px; }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
 
-        /* --- PAGE CONTENT STYLES --- */
-        .page-banner { background: linear-gradient(135deg, #050E22 0%, #0D1F42 100%); color: var(--white); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
-        .page-banner h1 { font-size: 3.5rem; font-weight: 900; background: var(--metallic-glow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .catalog-section { padding: 100px 0; background-color: var(--white); }
-        .product-focus-card { display: flex; background: #F9FAFC; border-radius: 24px; overflow: hidden; margin-bottom: 80px; box-shadow: 0 10px 40px rgba(0,0,0,0.02); flex-wrap: wrap; }
-        .product-focus-img { flex: 1 1 450px; background: linear-gradient(135deg, #FAFCFF 0%, #E9EFF8 100%); display: flex; align-items: center; justify-content: center; padding: 50px; min-height: 400px; }
-        .product-focus-details { flex: 1 1 550px; padding: 60px; }
-        .table-wrapper { width: 100%; overflow-x: auto; background: var(--white); border-radius: 12px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-        th { background-color: #0D1F42; color: var(--white); padding: 18px 24px; font-size: 0.85rem; }
-        td { padding: 16px 24px; border-bottom: 1px solid #EAEEF3; color: #333639; font-weight: 600; }
-        .calculator-section { padding: 100px 0; background-color: var(--light-bg); }
-        .calc-container { max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 24px; padding: 50px; box-shadow: 0 15px 50px rgba(0,0,0,0.05); }
-        .calc-output-window { margin-top: 40px; background: #0F172A; border-radius: 16px; padding: 30px; color: var(--white); text-align: center; }
-        .price-display { font-size: 3rem; font-weight: 900; color: #00FFCC; }
-        footer { background-color: var(--dark-grey); color: #92979B; padding: 100px 0 40px 0; text-align: center; }
+        .nav-links a {
+            font-weight: 700;
+            color: #2A2C2E;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-blue);
+            transition: var(--transition-smooth);
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* --- INNER PAGE BANNER (NO IMAGE, PURE TEXTURED GRADIENT) --- */
+        .page-banner {
+            background: linear-gradient(135deg, #050E22 0%, #0D1F42 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(rgba(0, 86, 179, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+        }
+
+        .page-banner h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            background: var(--metallic-glow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-banner p {
+            font-size: 1.2rem;
+            color: #C0D6F2;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            font-weight: 300;
+        }
+
+        /* --- MAIN PRODUCT SPECIFICATIONS SECTION --- */
+        .catalog-section {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .product-focus-card {
+            display: flex;
+            background: #F9FAFC;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+            margin-bottom: 80px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            flex-wrap: wrap;
+        }
+
+        .product-focus-img {
+            flex: 1 1 450px;
+            background: linear-gradient(135deg, #FAFCFF 0%, #E9EFF8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            min-height: 400px;
+        }
+
+        .product-focus-img img {
+            max-height: 300px;
+            width: auto;
+            transition: var(--transition-smooth);
+        }
+
+        .product-focus-card:hover .product-focus-img img {
+            transform: scale(1.06);
+        }
+
+        .product-focus-details {
+            flex: 1 1 550px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .catalog-tag {
+            align-self: flex-start;
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-blue);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .product-focus-details h2 {
+            font-size: 2.4rem;
+            color: var(--dark-grey);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .product-focus-details p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+        }
+
+        /* --- DATASHEETS & PRICING MATRICES --- */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            border: 1px solid #EAEEF3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: #0D1F42;
+            color: var(--white);
+            padding: 18px 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #EAEEF3;
+            color: #333639;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        tr:hover td {
+            background-color: rgba(0, 86, 179, 0.03);
+            color: var(--primary-blue);
+        }
+
+        /* --- ANIMATED RATE CALCULATOR MATRIX --- */
+        .calculator-section {
+            padding: 100px 0;
+            background-color: var(--light-bg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .calc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .input-block {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-block label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-block select, .input-block input {
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 2px solid #E2E8F0;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .input-block select:focus, .input-block input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
+        }
+
+        .calc-output-window {
+            margin-top: 40px;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            border-radius: 16px;
+            padding: 30px;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calc-output-window h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #94A3B8;
+            margin-bottom: 10px;
+        }
+
+        .price-display {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00FFCC;
+            text-shadow: 0 0 20px rgba(0,255,204,0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .calc-note {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            margin-top: 15px;
+        }
+
+        /* --- THE CORE TYPOGRAPHY ALIGNMENT --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: var(--dark-grey);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-blue);
+            border-radius: 4px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- TYPICAL INDUSTRIAL FOOTER --- */
+        footer {
+            background-color: var(--dark-grey);
+            color: #92979B;
+            padding: 100px 0 40px 0;
+            font-size: 0.95rem;
+            border-top: 6px solid #141619;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about h3, .footer-links h3, .footer-contact h3 {
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links ul li a {
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--white);
+            padding-left: 12px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #232629;
+            padding-top: 40px;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+
+        /* --- MOBILE RESPONSIBILITY --- */
         @media (max-width: 992px) {
-            .hamburger-label { display: block; }
-            .nav-links { position: fixed; top: 86px; left: -100%; width: 100%; height: calc(100vh - 86px); background-color: rgba(255, 255, 255, 0.98); flex-direction: column; align-items: center; padding-top: 50px; transition: left 0.5s; z-index: 1000; }
-            #menu-toggle:checked ~ .nav-links { left: 0; }
+            .product-focus-card { flex-direction: column; }
+            .product-focus-details { padding: 40px; }
+            .calc-container { padding: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 25px; }
+            .page-banner h1 { font-size: 2.6rem; }
+            .section-title { font-size: 2.2rem; }
+            .price-display { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -188,11 +517,7 @@
                 <img src="logo.png" alt="Sky Industries Logo Icon">
                 <div class="brand-title">Sky <span>Industries</span></div>
             </div>
-            <nav class="nav-menu-wrapper">
-                <input type="checkbox" id="menu-toggle">
-                <label for="menu-toggle" class="hamburger-label">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-                </label>
+            <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="products.html" class="active">Products</a></li>
@@ -206,78 +531,225 @@
     <section class="page-banner">
         <div class="container">
             <h1>Product Architecture</h1>
-            <p>Commercial-grade PVC profiles engineered specifically for maximum dielectric safety.</p>
+            <p>Commercial-grade PVC profiles engineered specifically for maximum dielectric safety and long structural lifespan parameters.</p>
         </div>
     </section>
 
     <section class="catalog-section">
         <div class="container">
+            
             <div class="product-focus-card">
-                <div class="product-focus-img"><img src="casing-patti.png" alt="PVC Casing"></div>
+                <div class="product-focus-img">
+                    <img src="casing-patti.png" alt="PVC Casing Patti Lineup">
+                </div>
                 <div class="product-focus-details">
+                    <div class="catalog-tag">Primary Production Line</div>
                     <h2>PVC Casing (Patti)</h2>
-                    <p>High impact-resistant design for modern, safe wiring setups.</p>
+                    <p>Our flagship product line designed with high impact strength, premium lock-fitting mechanics, and completely flame-retardant elements. Specifically optimized for modern neat surface wiring requirements in large architectural complexes.</p>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Size (mm)</th>
+                                    <th>Pieces / Pack</th>
+                                    <th>Weight (Kg)</th>
+                                    <th>Standard Base Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>20 / 12</td>
+                                    <td>200 Pcs</td>
+                                    <td>28 kg</td>
+                                    <td>3200/-</td>
+                                </tr>
+                                <tr>
+                                    <td>25 / 12</td>
+                                    <td>100 Pcs</td>
+                                    <td>28 kg</td>
+                                    <td>3200/-</td>
+                                </tr>
+                                <tr>
+                                    <td>25 / 16</td>
+                                    <td>100 Pcs</td>
+                                    <td>28 kg</td>
+                                    <td>3300/-</td>
+                                </tr>
+                                <tr>
+                                    <td>30 / 15</td>
+                                    <td>100 Pcs</td>
+                                    <td>28 kg</td>
+                                    <td>3300/-</td>
+                                </tr>
+                                <tr>
+                                    <td>32 / 12</td>
+                                    <td>100 Pcs</td>
+                                    <td>28 kg</td>
+                                    <td>3400/-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
+
+            <div class="product-focus-card">
+                <div class="product-focus-img">
+                    <img src="conduit-pipes.png" alt="Electrical Conduit Pipes Lineup">
+                </div>
+                <div class="product-focus-details">
+                    <div class="catalog-tag">Heavy Duty Insulation</div>
+                    <h2>Electrical Conduit Pipes</h2>
+                    <p>Engineered structurally seamless with extra smooth interior wall layers to significantly reduce pull friction during wiring. Highly stress-tested against compression loads, bending fractures, and extreme temperature conditions across heavy industrial environments.</p>
+                    
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Diameter Range</th>
+                                    <th>Wall Thickness Spec</th>
+                                    <th>Standard Colors</th>
+                                    <th>Application Range</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>19 mm / 20 mm</td>
+                                    <td>Light / Medium / Heavy</td>
+                                    <td>Ivory White / Black / Grey</td>
+                                    <td>Concealed & Surface Wiring</td>
+                                </tr>
+                                <tr>
+                                    <td>25 mm</td>
+                                    <td>Medium / Heavy Duty</td>
+                                    <td>Ivory White / Grey</td>
+                                    <td>Commercial Building Grids</td>
+                                </tr>
+                                <tr>
+                                    <td>32 mm / 40 mm</td>
+                                    <td>Industrial Heavy Wall</td>
+                                    <td>Dark Grey / Custom White</td>
+                                    <td>Heavy Infrastructure Infrastructure</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+            <div class="product-focus-card">
+                <div class="product-focus-img">
+                    <img src="accessories.png" alt="Electrical Installation Fittings">
+                </div>
+                <div class="product-focus-details">
+                    <div class="catalog-tag">Precision Accessories</div>
+                    <h2>Installation Accessories</h2>
+                    <p>A full complementary engineering lineup of structural couplings, heavy multi-way deep surface junction boxes, precision bends, and structural clips. Built using matching polymer compounds to guarantee uniform durability across the entire infrastructure network layout.</p>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <section class="calculator-section">
         <div class="container">
+            <h2 class="section-title">Wholesale Estimation Hub</h2>
+            <p class="section-subtitle">Select your standard PVC sizing configuration and input bulk requirements to instantly display custom live wholesale baseline rates.</p>
+            
             <div class="calc-container">
-                <select id="productSelect">
-                    <option value="3200">Casing Patti (₹3200)</option>
-                    <option value="3400">Heavy Conduit (₹3400)</option>
-                </select>
-                <input type="number" id="quantityInput" value="1">
+                <div class="calc-grid">
+                    <div class="input-block">
+                        <label for="productSelect">Select Sizing Profile</label>
+                        <select id="productSelect">
+                            <option value="3200" data-name="20/12 Patti">Casing Patti - 20/12 (₹3200/Pack)</option>
+                            <option value="3200" data-name="25/12 Patti">Casing Patti - 25/12 (₹3200/Pack)</option>
+                            <option value="3300" data-name="25/16 Patti">Casing Patti - 25/16 (₹3300/Pack)</option>
+                            <option value="3300" data-name="30/15 Patti">Casing Patti - 30/15 (₹3300/Pack)</option>
+                            <option value="3400" data-name="32/12 Patti">Casing Patti - 32/12 (₹3400/Pack)</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="quantityInput">Required Packs (Pack Vol)</label>
+                        <input type="number" id="quantityInput" min="1" value="10" placeholder="Enter package quantities">
+                    </div>
+                </div>
+
                 <div class="calc-output-window">
-                    <div class="price-display" id="totalPriceDisplay">₹3,200</div>
+                    <h4>Estimated Commercial Batch Valuation</h4>
+                    <div class="price-display" id="totalPriceDisplay">₹32,000</div>
+                    <p class="calc-note">Note: Display valuations represent base factory wholesale rates. Taxes, loading profiles, and customized bulk dispatch discounts are computed directly via official quotes.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Sky Industries. All Rights Reserved.</p>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <h3>Sky Industries</h3>
+                <p>Trusted manufacturers and nationwide wholesale suppliers of high-grade industrial electrical raw components engineered safely for residential, commercial, and macro infrastructure layouts.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Navigation Hub</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Regional Factory & Head Office</h3>
+                <p>📍 610, Godutai Vidi, Gharkul Parodekar, South MIDC, Solapur, Maharashtra – 413006, India</p>
+                <p>📞 +91 8830597554</p>
+                <p>🌐 skyindustries.store</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sky Industries. All Rights Reserved. | Infrastructure Built For Safety. Made To Last.</p>
+        </div>
     </footer>
 
     <script>
-        // Blue Sparkle Hover
+        // --- 1. BLUE SPARKLING CURSOR TRAIL ENGINE ---
         window.addEventListener('mousemove', function(e) {
             if (Math.random() > 0.4) { 
-                const s = document.createElement('div');
-                s.className = 'sparkle';
-                s.style.left = e.clientX + 'px';
-                s.style.top = e.clientY + 'px';
-                document.body.appendChild(s);
-                setTimeout(() => s.remove(), 800);
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                
+                const customSize = Math.random() * 5 + 4;
+                sparkle.style.width = customSize + 'px';
+                sparkle.style.height = customSize + 'px';
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 800);
             }
         });
 
-        // Electrical Click Spark
-        window.addEventListener('click', function(e) {
-            const count = 10;
-            for (let i = 0; i < count; i++) {
-                const s = document.createElement('div');
-                s.className = 'electric-spark';
-                s.style.left = e.clientX + 'px';
-                s.style.top = e.clientY + 'px';
-                const angle = Math.random() * Math.PI * 2;
-                const dist = Math.random() * 100 + 20;
-                s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-                s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
-                document.body.appendChild(s);
-                setTimeout(() => s.remove(), 400);
-            }
-        });
+        // --- 2. LIVE WHolesale AUTOMATED ESTIMATOR MATH ENGINE ---
+        const productSelect = document.getElementById('productSelect');
+        const quantityInput = document.getElementById('quantityInput');
+        const totalPriceDisplay = document.getElementById('totalPriceDisplay');
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => document.getElementById('menu-toggle').checked = false);
-        });
+        function calculateEstimation() {
+            const baseRate = parseFloat(productSelect.value);
+            const packs = parseInt(quantityInput.value) || 0;
+            const total = baseRate * packs;
+            
+            // Format to Indian Currency Standards smoothly
+            totalPriceDisplay.innerText = "₹" + total.toLocaleString('en-IN');
+        }
 
-        const s = document.getElementById('productSelect'), q = document.getElementById('quantityInput'), d = document.getElementById('totalPriceDisplay');
-        function calc() { d.innerText = "₹" + (s.value * q.value).toLocaleString('en-IN'); }
-        s.addEventListener('change', calc); q.addEventListener('input', calc);
+        // Event listener hooks for live fluid updates
+        productSelect.addEventListener('change', calculateEstimation);
+        quantityInput.addEventListener('input', calculateEstimation);
     </script>
 </body>
 </html>
