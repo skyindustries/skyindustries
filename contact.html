@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Industries | Premium Electrical Raw Materials</title>
+    <title>Contact Us | Sky Industries - Commercial Procurement Hub</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="description" content="Connect with the Sky Industries corporate supply department directly to establish logistics routing schedules or request wholesale quotes.">
+
     <style>
         /* --- HIGH-END DESIGN SYSTEM & VARIABLES --- */
         :root {
@@ -16,12 +21,13 @@
             --text-dark: #101214;
             --text-muted: #5F6468;
             --accent-blue: #007BFF;
+            --whatsapp-green: #25D366;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --max-width: 1440px; /* Expanded for premium ultra-wide display screens */
+            --max-width: 1440px; 
         }
 
-        /* --- GLOBAL SMOOTH RESETS --- */
+        /* --- GLOBAL RESETS --- */
         * {
             margin: 0;
             padding: 0;
@@ -79,115 +85,7 @@
             100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
         }
 
-        /* --- MAGNETIC / GLOWING INTERACTION COMPONENTS --- */
-        .btn {
-            display: inline-block;
-            padding: 16px 42px;
-            border-radius: 50px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            transition: var(--transition-smooth);
-            cursor: pointer;
-            position: relative;
-            z-index: 5;
-            overflow: hidden;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gradient-blue);
-            color: var(--white);
-            box-shadow: 0 4px 25px rgba(0, 86, 179, 0.4);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.6s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 86, 179, 0.6);
-        }
-
-        .btn-outline {
-            border: 2px solid rgba(255,255,255,0.8);
-            color: var(--white);
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--primary-blue);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.25);
-        }
-
-        /* --- TYPOGRAPHY MOTION SCHEMES --- */
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            color: var(--dark-grey);
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 4px;
-            background: var(--gradient-blue);
-            border-radius: 4px;
-            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active .section-title::after {
-            width: 120px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 70px;
-            font-size: 1.15rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-        }
-
-        /* --- DYNAMIC TRANSITION INTERSECTORS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- STICKY TRANSPARENT HEADER --- */
+        /* --- STICKY NAVIGATION HEADER --- */
         header {
             background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
@@ -203,13 +101,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
+            position: relative;
         }
 
-        /* Combined Logo Brand Wrapper */
         .logo-block {
             display: flex;
             align-items: center;
             gap: 15px;
+            z-index: 1010;
         }
 
         .logo-block img {
@@ -233,6 +132,35 @@
 
         .brand-title span {
             color: var(--primary-blue);
+        }
+
+        /* Navigation Links & Functional Mobile Toggle Container */
+        .nav-menu-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pure CSS Hidden Checkbox for Mobile Triggering */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Animated Hamburger Icon Style */
+        .hamburger-label {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1010;
+        }
+
+        .hamburger-label .bar {
+            display: block;
+            width: 28px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: #002855;
+            transition: all 0.4s ease-in-out;
+            border-radius: 2px;
         }
 
         .nav-links {
@@ -271,524 +199,323 @@
             width: 100%;
         }
 
-        /* --- THE MATRIX MOLECULAR INTERACTIVE HERO --- */
-        .hero {
-            background: linear-gradient(135deg, #050E22 0%, #0D1F42 50%, #020714 100%);
+        /* --- PAGE HEADER BANNER --- */
+        .page-banner {
+            background: linear-gradient(135deg, #050E22 0%, #0D1F42 100%);
             color: var(--white);
-            padding: 240px 0;
+            padding: 100px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        /* Interactive Animation Canvas Graphic */
-        #heroCanvas {
+        .page-banner::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(rgba(0, 86, 179, 0.15) 1px, transparent 1px);
+            background-size: 30px 30px;
             z-index: 1;
-            pointer-events: all;
         }
 
-        .hero .container {
-            position: relative;
-            z-index: 5;
-        }
-
-        .hero h1 {
-            font-size: 4.8rem;
+        .page-banner h1 {
+            font-size: 3.5rem;
             font-weight: 900;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
             background: var(--metallic-glow);
-            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: textShine 4s linear infinite, revealDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 850px;
-            margin: 0 auto 50px auto;
+        .page-banner p {
+            font-size: 1.2rem;
             color: #C0D6F2;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
             font-weight: 300;
-            animation: revealUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            animation: revealUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* --- DYNAMIC TRANSITION INTERSECTORS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- TEXTURED INDUSTRIAL STRIP --- */
-        .motto-strip {
-            background-color: var(--dark-grey);
-            color: var(--white);
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 5px solid var(--primary-blue);
-            position: relative;
-            z-index: 10;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .motto-content h2 {
-            font-size: 2.2rem;
-            letter-spacing: 4px;
-            font-weight: 800;
-        }
-
-        .motto-content span {
-            color: var(--accent-blue);
-            text-shadow: 0 0 20px rgba(0,123,255,0.6);
-        }
-
-        /* --- LIVE COUNTER DISPLAY STATISTICS --- */
-        .metrics-section {
-            padding: 90px 0;
+        /* --- CORE INTERACTIVE HUB GRID --- */
+        .contact-hub-section {
+            padding: 120px 0;
             background-color: var(--white);
-            position: relative;
         }
 
-        .metrics-grid {
+        .hub-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 40px;
-            text-align: center;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: start;
         }
 
-        .metric-card {
-            padding: 30px;
+        /* Informational Card Blocks Column */
+        .contact-cards-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-card {
             background: #F9FAFC;
-            border-radius: 16px;
+            padding: 35px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.03);
             transition: var(--transition-smooth);
-            border: 1px solid rgba(0,0,0,0.02);
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
         }
 
-        .metric-card:hover {
-            transform: translateY(-8px) scale(1.03);
+        .info-card:hover {
+            transform: translateY(-5px);
             background: var(--white);
             box-shadow: 0 20px 40px rgba(0,86,179,0.06);
             border-color: rgba(0,86,179,0.1);
         }
 
-        .metric-card h3 {
-            font-size: 3.5rem;
-            color: var(--primary-blue);
-            font-weight: 900;
-            margin-bottom: 5px;
+        /* Special High-Visibility Brand Card Variations */
+        .info-card.whatsapp-card {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.04) 0%, rgba(18, 140, 126, 0.08) 100%);
+            border: 1px solid rgba(37, 211, 102, 0.2);
         }
-
-        .metric-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* --- HIGH PROFILE PHYSICAL PRODUCT GRIDS --- */
-        .products-preview {
-            padding: 120px 0;
-            background-color: var(--light-bg);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
+        .info-card.whatsapp-card:hover {
             background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.12);
+            border-color: var(--whatsapp-green);
+        }
+        .info-card.whatsapp-card .card-icon {
+            color: var(--whatsapp-green);
+        }
+        .whatsapp-action-link {
+            display: inline-block;
+            margin-top: 12px;
+            color: #128C7E;
+            font-weight: 700;
+            font-size: 0.95rem;
             transition: var(--transition-smooth);
-            border: 1px solid rgba(0,0,0,0.01);
+        }
+        .info-card.whatsapp-card:hover .whatsapp-action-link {
+            color: var(--whatsapp-green);
+            transform: translateX(5px);
         }
 
-        .product-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        .info-card.social-link-card {
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .product-img {
-            height: 280px;
-            background: linear-gradient(135deg, #FAFCFF 0%, #E9EFF8 100%);
+        .social-link-tree {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            gap: 15px;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* Placeholder Interactive Media Elements */
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            background: #F1F5F9;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .social-btn.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.2);
+        }
+        .social-btn.linkedin:hover {
+            background: #0077B5;
+            color: var(--white);
+            box-shadow: 0 10px 20px rgba(0, 119, 181, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* --- HIGH PERFORMANCE PROCUREMENT FORM MODULE --- */
+        .form-panel {
+            background: var(--white);
+            padding: 55px;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
             position: relative;
         }
 
-        .product-img img {
-            height: 75%;
-            width: auto;
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--dark-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input, .input-group textarea {
+            padding: 16px 20px;
+            border-radius: 8px;
+            border: 2px solid #E2E8F0;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-grey);
+            outline: none;
+            transition: var(--transition-smooth);
+            background-color: #F8FAFC;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            background-color: var(--white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1);
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Action Form Submission Trigger Element */
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-blue);
+            color: var(--white);
+            padding: 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(0, 86, 179, 0.4);
             transition: var(--transition-smooth);
         }
 
-        .product-card:hover .product-img img {
-            transform: scale(1.12) rotate(2deg);
+        .submit-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 86, 179, 0.6);
         }
 
-        .product-info {
+        /* Frontend Interactive Success Animation Window Module */
+        .success-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+            z-index: 20;
+            text-align: center;
             padding: 40px;
         }
 
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-grey);
-            font-weight: 800;
+        .success-overlay.triggered {
+            opacity: 1;
+            pointer-events: all;
         }
 
-        .product-info p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 30px;
-            height: 75px;
-            overflow: hidden;
-        }
-
-        .product-link {
-            color: var(--primary-blue);
-            font-weight: 700;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition-smooth);
-        }
-
-        .product-card:hover .product-link {
-            color: var(--accent-blue);
-            transform: translateX(8px);
-        }
-
-        /* --- STEP MATRIX PROCESS FLOW GRID --- */
-        .process-section {
-            padding: 120px 0;
-            background-color: var(--white);
-        }
-
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
-            margin-top: 70px;
-        }
-
-        .timeline-item {
-            text-align: center;
-            padding: 40px 30px;
-            background: var(--light-bg);
-            border-radius: 20px;
-            transition: var(--transition-smooth);
-            position: relative;
-            border-bottom: 4px solid transparent;
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-10px);
-            background: var(--white);
-            box-shadow: 0 25px 50px rgba(0,86,179,0.08);
-            border-bottom-color: var(--primary-blue);
-        }
-
-        .step-number {
-            width: 70px;
-            height: 70px;
-            background: var(--gradient-blue);
-            color: var(--white);
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #00FFCC;
+            color: #0F172A;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin: 0 auto 30px auto;
-            box-shadow: 0 8px 25px rgba(0,86,179,0.3);
-            transition: var(--transition-smooth);
-        }
-
-        .timeline-item:hover .step-number {
-            transform: scale(1.1) rotateY(360deg);
-        }
-
-        .timeline-item h3 {
-            font-size: 1.35rem;
-            color: var(--dark-grey);
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-
-        .timeline-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* --- THE SPLIT GEOMETRIC ABSTRACT MOTION HOVER BANNER --- */
-        .assurance-banner {
-            display: flex;
-            background-color: #040A18;
-            color: var(--white);
-            min-height: 520px;
-            flex-wrap: wrap;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Moving Abstract Techno Panel Grid Replacing any Background Images */
-        .assurance-graphic-side {
-            flex: 1 1 600px;
-            min-height: 400px;
-            background-image: 
-                linear-gradient(rgba(0, 86, 179, 0.15) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(0, 86, 179, 0.15) 2px, transparent 2px);
-            background-size: 40px 40px;
-            background-color: #030712;
-            position: relative;
-            animation: technicalFlow 25s linear infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Animated Equipment Module Container */
-        .equipment-module {
-            width: 260px;
-            height: 320px;
-            background: linear-gradient(135deg, #102040 0%, #060B18 100%);
-            border: 3px solid var(--primary-blue);
-            border-radius: 12px;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0, 86, 179, 0.5), inset 0 0 20px rgba(0, 123, 255, 0.3);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            animation: floatModule 4s ease-in-out infinite alternate;
-            z-index: 10;
-        }
-
-        /* Moving Voltage Sinewave Component */
-        .equipment-wave {
-            width: 100%;
-            height: 60px;
-            border: 1px solid rgba(0, 123, 255, 0.3);
-            background: rgba(0,0,0,0.4);
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .equipment-wave::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: repeating-linear-gradient(90deg, transparent, transparent 10px, var(--accent-blue) 11px, var(--accent-blue) 13px, transparent 14px);
-            opacity: 0.7;
-            top: 0;
-            left: 0;
-            animation: waveFlow 1.5s linear infinite;
-        }
-
-        /* Glowing Node Switches */
-        .equipment-nodes {
-            display: flex;
-            justify-content: space-around;
-            margin: 15px 0;
-        }
-
-        .node {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background-color: #0A152A;
-            border: 2px solid #204080;
-            position: relative;
-        }
-
-        .node::before {
-            content: '';
-            position: absolute;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #00FFCC;
-            box-shadow: 0 0 12px #00FFCC;
-            animation: pulseNode 1s infinite alternate;
-        }
-
-        .node:nth-child(2)::before {
-            background-color: #007BFF;
-            box-shadow: 0 0 12px #007BFF;
-            animation-delay: 0.3s;
-        }
-
-        .node:nth-child(3)::before {
-            background-color: #FF3366;
-            box-shadow: 0 0 12px #FF3366;
-            animation-delay: 0.6s;
-        }
-
-        /* Grid Circuit Bars */
-        .equipment-bars {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .bar-line {
-            width: 100%;
-            height: 8px;
-            background: #152B54;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bar-line::after {
-            content: '';
-            position: absolute;
-            height: 100%;
-            width: 30%;
-            background: linear-gradient(90deg, transparent, #00FFCC, transparent);
-            left: -30%;
-            animation: pulseBar 2s infinite linear;
-        }
-
-        .bar-line:nth-child(2)::after { animation-delay: 0.7s; }
-        .bar-line:nth-child(3)::after { animation-delay: 1.4s; }
-
-        @keyframes floatModule {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-15px) rotate(1deg); }
-        }
-        @keyframes waveFlow {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @keyframes pulseNode {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-        }
-        @keyframes pulseBar {
-            0% { left: -30%; }
-            100% { left: 100%; }
-        }
-
-        .assurance-graphic-side::before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            top: 10%;
-            left: 10%;
-            border: 2px dashed rgba(0,123,255,0.2);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morphGraphic 12s linear infinite alternate;
-        }
-
-        .assurance-text {
-            flex: 1 1 600px;
-            padding: 100px 8%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 5;
-        }
-
-        .assurance-text h2 {
-            font-size: 2.6rem;
             margin-bottom: 25px;
-            font-weight: 800;
-        }
-
-        .assurance-text p {
-            color: #A9B9D1;
-            margin-bottom: 40px;
-            font-size: 1.15rem;
-        }
-
-        /* --- GLOW-BORDER BRAND PERFECTIONS --- */
-        .why-choose-us {
-            background-color: var(--light-bg);
-            padding: 120px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 50px 40px;
-            text-align: center;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.01);
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-blue);
-            transform: scaleX(0);
-            transition: var(--transition-smooth);
-            transform-origin: center;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 55px rgba(0,0,0,0.06);
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 25px;
-            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.4);
+            transform: scale(0.5);
             transition: var(--transition-smooth);
         }
 
-        .feature-card:hover .feature-icon {
-            transform: scale(1.2);
+        .success-overlay.triggered .success-icon {
+            transform: scale(1);
         }
 
-        .feature-card h3 {
-            font-size: 1.45rem;
-            margin-bottom: 15px;
+        .success-overlay h3 {
+            font-size: 2rem;
             color: var(--dark-grey);
+            margin-bottom: 10px;
             font-weight: 800;
         }
 
-        /* --- STRUCTURAL FOOTER HUB --- */
+        .success-overlay p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 400px;
+        }
+
+        /* --- INDUSTRIAL FOOTER HUB --- */
         footer {
             background-color: var(--dark-grey);
             color: #92979B;
@@ -838,56 +565,64 @@
             font-size: 0.88rem;
         }
 
-        /* --- KEYFRAME ANIMATION ARCS --- */
-        @keyframes textShine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes revealDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes revealUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes technicalFlow {
-            from { background-position: 0 0; }
-            to { background-position: 1000px 1000px; }
-        }
-
-        @keyframes morphGraphic {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
         /* --- RESPONSIVE DEVICE COMPLIANCE --- */
-        @media (max-width: 1200px) {
-            .hero h1 { font-size: 4rem; }
-        }
-
         @media (max-width: 992px) {
-            .hero h1 { font-size: 3.4rem; }
-            .assurance-text { padding: 70px 6%; }
+            .hub-grid { grid-template-columns: 1fr; gap: 50px; }
+            .form-panel { padding: 40px; }
+            
+            /* Show Mobile Hamburger UI Elements */
+            .hamburger-label {
+                display: block;
+            }
+
+            /* Shift Navigation panel to an off-screen mobile drawer overlay */
+            .nav-links {
+                position: fixed;
+                top: 86px; /* Below standard header bar spacing */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 86px);
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding-top: 50px;
+                transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+                z-index: 1000;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            /* Toggle Action via CSS Checkbox Control Selector Rules */
+            #menu-toggle:checked ~ .nav-links {
+                left: 0;
+            }
+
+            /* Hamburger transform states to clean '✕' layout shape */
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background-color: var(--primary-blue);
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(2) {
+                opacity: 0;
+            }
+            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background-color: var(--primary-blue);
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 25px;
-            }
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.15rem; }
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn { width: 100%; max-width: 320px; }
-            .section-title { font-size: 2.2rem; }
+            .logo-block img { height: 55px; }
+            .brand-title { font-size: 1.3rem; letter-spacing: 0.5px; }
+            .page-banner h1 { font-size: 2.6rem; }
         }
     </style>
 </head>
@@ -899,180 +634,112 @@
                 <img src="logo.png" alt="Sky Industries Logo Icon">
                 <div class="brand-title">Sky <span>Industries</span></div>
             </div>
-            <nav>
+            
+            <nav class="nav-menu-wrapper">
+                <input type="checkbox" id="menu-toggle">
+                
+                <label for="menu-toggle" class="hamburger-label">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+
                 <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <canvas id="heroCanvas"></canvas>
+    <section class="page-banner">
         <div class="container">
-            <h1>SKY INDUSTRIES</h1>
-            <p>High-Capacity Manufacturing & Precision Global Supply of Premium Grade Electrical Raw Components.</p>
-            <div class="hero-btns">
-                <a href="products.html" class="btn btn-primary">Explore Products</a>
-                <a href="contact.html" class="btn btn-outline">Request Commercial Quote</a>
-            </div>
+            <h1>Procurement Gateway</h1>
+            <p>Connect with our corporate supply department directly to establish logistics routing schedules or clear massive wholesale price brackets.</p>
         </div>
     </section>
 
-    <section class="motto-strip">
-        <div class="container motto-content">
-            <h2>BUILT FOR <span>SAFETY</span>. MADE TO <span>LAST</span>.</h2>
-        </div>
-    </section>
-
-    <section class="metrics-section">
-        <div class="container metrics-grid">
-            <div class="metric-card">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Premium Grade Precision</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="counter" data-target="100">0</h3>
-                <p>Industrial Safety Scale</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="counter" data-target="50">0</h3>
-                <p>Commercial Dimensions</p>
-            </div>
-            <div class="metric-card">
-                <h3>100%</h3>
-                <p>On-Time Supply Match</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="products-preview">
-        <div class="container">
-            <h2 class="section-title reveal">Our Product Architecture</h2>
-            <p class="section-subtitle reveal">Engineered robustly to meet meticulous compliance requirements across residential, commercial, and massive public infrastructure layouts.</p>
+    <section class="contact-hub-section">
+        <div class="container hub-grid">
             
-            <div class="product-grid">
-                <div class="product-card reveal">
-                    <div class="product-img">
-                        <img src="casing-patti.png" alt="PVC Casing (Patti)">
+            <div class="contact-cards-column reveal">
+                
+                <a href="https://wa.me/918830597554?text=Hello%20Sky%20Industries,%20I%20am%20interested%20in%20a%20wholesale%20commercial%20quote%20for%20electrical%20raw%20materials." target="_blank" class="info-card whatsapp-card">
+                    <div class="card-icon">💬</div>
+                    <div class="card-content">
+                        <h3>WhatsApp Business Desk</h3>
+                        <p>Click to open an instant message channel directly with our MIDC factory operations desk.</p>
+                        <span class="whatsapp-action-link">Start Instant Chat →</span>
                     </div>
-                    <div class="product-info">
-                        <h3>PVC Casing (Patti)</h3>
-                        <p>High impact-resistant layout built custom-made for completely safe, neat, and flame-retardant interior electrical wiring setups.</p>
-                        <a href="products.html" class="product-link">View Pricing & Size Matrix →</a>
+                </a>
+
+                <div class="info-card">
+                    <div class="card-icon">📍</div>
+                    <div class="card-content">
+                        <h3>Regional Production Complex</h3>
+                        <p>610, Godutai Vidi, Gharkul Parodekar, South MIDC, Solapur, Maharashtra – 413006, India</p>
                     </div>
                 </div>
 
-                <div class="product-card reveal">
-                    <div class="product-img">
-                        <img src="conduit-pipes.png" alt="Electrical Conduit Pipes">
+                <a href="tel:+918830597554" class="info-card">
+                    <div class="card-icon">📞</div>
+                    <div class="card-content">
+                        <h3>Direct Sourcing Line</h3>
+                        <p>+91 8830597554</p>
                     </div>
-                    <div class="product-info">
-                        <h3>Electrical Conduit Pipes</h3>
-                        <p>Heavy-duty, structurally seamless conduits designed for premium insulation routing and architectural structural permanence.</p>
-                        <a href="products.html" class="product-link">Analyze Technical Specs →</a>
+                </a>
+
+                <div class="info-card social-link-card">
+                    <div class="card-content">
+                        <h3>Digital Network Hubs</h3>
+                        <p>Connect with our corporate social channels for industrial updates and product rollouts.</p>
+                    </div>
+                    <div class="social-link-tree">
+                        <a href="#" class="social-btn instagram" onclick="alert('Instagram profile linkage configuration coming soon!')">Instagram</a>
+                        <a href="#" class="social-btn linkedin" onclick="alert('LinkedIn corporate hub profile linkage coming soon!')">LinkedIn</a>
                     </div>
                 </div>
 
-                <div class="product-card reveal">
-                    <div class="product-img">
-                        <img src="accessories.png" alt="Electrical Installation Accessories">
+            </div>
+
+            <div class="form-panel reveal">
+                
+                <div class="success-overlay" id="formSuccessOverlay">
+                    <div class="success-icon">✓</div>
+                    <h3>Transmission Verified</h3>
+                    <p>Your institutional RFQ profile requirements have been successfully dispatched onto our South MIDC logistics routing office desk.</p>
+                </div>
+
+                <form id="procurementForm" onsubmit="triggerFormAnimation(event)">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="compName">Commercial Entity Name</label>
+                            <input type="text" id="compName" required placeholder="e.g., Infrastructure Ltd">
+                        </div>
+                        <div class="input-group">
+                            <label for="contactName">Procurement Lead Name</label>
+                            <input type="text" id="contactName" required placeholder="e.g., Rahul Sharma">
+                        </div>
+                        <div class="input-group">
+                            <label for="phoneNum">Direct Contact Line</label>
+                            <input type="tel" id="phoneNum" required placeholder="e.g., +91 98765 43210">
+                        </div>
+                        <div class="input-group">
+                            <label for="volRequest">Estimated Package Volume</label>
+                            <input type="text" id="volRequest" placeholder="e.g., 500 Packs / Custom Truckload">
+                        </div>
+                        <div class="input-group full-width">
+                            <label for="msgDetails">Batch Dimensional Specifications & Schedule Requirements</label>
+                            <textarea id="msgDetails" required placeholder="Detail your required PVC sizing parameters, custom length adjustments, and destination site loading drop dates..."></textarea>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Installation Accessories</h3>
-                        <p>An extensive network of matching couplings, high-strength deep bends, and safe junction components for precise fits.</p>
-                        <a href="products.html" class="product-link">Discover Full Catalog →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <button type="submit" class="submit-btn">Disptach RFQ Specification Profile</button>
+                </form>
 
-    <section class="process-section">
-        <div class="container">
-            <h2 class="section-title reveal">Precision Manufacturing Stream</h2>
-            <p class="section-subtitle reveal">How we maintain top world-class structural uniformity across millions of custom raw units every single month.</p>
-            
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="step-number">1</div>
-                    <h3>Raw Processing</h3>
-                    <p>Selection of clean, ultra-dense baseline granules for absolute raw material integrity.</p>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="step-number">2</div>
-                    <h3>Precision Extrusion</h3>
-                    <p>Advanced automated hot-mold profiling creates continuous architectural wall-thickness consistency.</p>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="step-number">3</div>
-                    <h3>Stress Verification</h3>
-                    <p>Aggressive break-testing runs ensure maximum structural resilience under high heat and sudden impact loads.</p>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="step-number">4</div>
-                    <h3>Bulk Distribution</h3>
-                    <p>Secure freight loading and fast logistics deployment directly delivered straight onto your construction site.</p>
-                </div>
             </div>
-        </div>
-    </section>
 
-    <section class="assurance-banner reveal">
-        <div class="assurance-graphic-side">
-            <div class="equipment-module">
-                <div class="equipment-wave"></div>
-                <div class="equipment-bars">
-                    <div class="bar-line"></div>
-                    <div class="bar-line"></div>
-                    <div class="bar-line"></div>
-                </div>
-                <div class="equipment-nodes">
-                    <div class="node"></div>
-                    <div class="node"></div>
-                    <div class="node"></div>
-                </div>
-            </div>
-        </div>
-        <div class="assurance-text">
-            <h2>Engineered For Maximum Safety Standards</h2>
-            <p>Every single electrical raw component produced inside Sky Industries undergoes systematic dimension inspection. We understand that large scale infrastructure developments depend entirely on structural durability, hence we enforce pure engineering precision from chemical formulation to drop-off.</p>
-            <div>
-                <a href="about.html" class="btn btn-outline">Explore Our Factory Standards</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="why-choose-us">
-        <div class="container">
-            <h2 class="section-title reveal">The Sky Industries Advantage</h2>
-            <p class="section-subtitle reveal">Why key electrical project leads and commercial bulk buyers trust us as their primary raw component distribution partner.</p>
-            
-            <div class="features-grid">
-                <div class="feature-card reveal">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Industrial Grade</h3>
-                    <p>Engineered strictly to survive aggressive physical wear, high structural stress, and long mechanical lifespans.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Advanced Insulation</h3>
-                    <p>Formulated carefully using premium safety compounds to offer completely secure non-conductive property layers.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">💸</div>
-                    <h3>Wholesale Advantage</h3>
-                    <p>Direct from our regional production floor grids, giving major commercial pricing leverage over standard intermediaries.</p>
-                </div>
-                <div class="feature-card reveal">
-                    <div class="feature-icon">🚛</div>
-                    <h3>Mass Delivery Ready</h3>
-                    <p>Fully equipped to handle continuous, timed multi-ton drop distribution runs smoothly across major construction layouts.</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1104,124 +771,32 @@
     </footer>
 
     <script>
-        // --- 0. BLUE SPARKLING CURSOR TRAIL ENGINE ---
+        // --- 1. BLUE SPARKLING CURSOR TRAIL ENGINE ---
         window.addEventListener('mousemove', function(e) {
-            // Limits frequency slightly to avoid overcrowding the screen canvas
             if (Math.random() > 0.4) { 
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.style.left = e.clientX + 'px';
                 sparkle.style.top = e.clientY + 'px';
                 
-                // Randomizes tiny sizes slightly for organic feel
                 const customSize = Math.random() * 5 + 4;
                 sparkle.style.width = customSize + 'px';
                 sparkle.style.height = customSize + 'px';
 
                 document.body.appendChild(sparkle);
 
-                // Auto cleans nodes from domestic tree after fade
                 setTimeout(() => {
                     sparkle.remove();
                 }, 800);
             }
         });
 
-        // --- 1. INTERACTIVE INTERIOR CANVAS MOLECULAR MATRIX ---
-        const canvas = document.getElementById('heroCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let particlesArray = [];
-        const numberOfParticles = 75;
-        const mouse = { x: null, y: null, radius: 160 };
-
-        function resizeCanvas() {
-            canvas.width = canvas.parentElement.offsetWidth;
-            canvas.height = canvas.parentElement.offsetHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        window.addEventListener('mousemove', function(event) {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = event.clientX - rect.left;
-            mouse.y = event.clientY - rect.top;
+        // Close dynamic mobile nav panel automatically if user selects a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
         });
-
-        window.addEventListener('mouseleave', function() {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.6;
-                this.speedY = (Math.random() - 0.5) * 0.6;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-                if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
-
-                // Mouse interaction flow mapping
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.hypot(dx, dy);
-                    if (distance < mouse.radius) {
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        this.x -= (dx / distance) * force * 2;
-                        this.y -= (dy / distance) * force * 2;
-                    }
-                }
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(0, 123, 255, 0.45)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particlesArray = [];
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-        initParticles();
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Connective matrix line calculation loops
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                
-                for (let j = i; j < particlesArray.length; j++) {
-                    let dx = particlesArray[i].x - particlesArray[j].x;
-                    let dy = particlesArray[i].y - particlesArray[j].y;
-                    let distance = Math.hypot(dx, dy);
-                    
-                    if (distance < 110) {
-                        ctx.strokeStyle = `rgba(0, 86, 179, ${0.15 - (distance/110)*0.15})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-                        ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
 
         // --- 2. SCROLL VIEW REVEAL INITIATOR ---
         const revealElements = document.querySelectorAll('.reveal');
@@ -1236,32 +811,13 @@
 
         revealElements.forEach(element => { revealOnScroll.observe(element); });
 
-        // --- 3. LIVE PERFORMANCE METRICS COUNT TICKER ---
-        const counters = document.querySelectorAll('.counter');
-        const startCounters = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    const counter = entry.target;
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    let count = 0;
-                    const speed = target / 35;
-
-                    const updateCount = () => {
-                        if(count < target) {
-                            count = Math.ceil(count + speed);
-                            counter.innerText = count + (target === 100 ? '%' : '+');
-                            setTimeout(updateCount, 25);
-                        } else {
-                            counter.innerText = target + (target === 100 ? '%' : '+');
-                        }
-                    };
-                    updateCount();
-                    observer.unobserve(counter);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        counters.forEach(counter => { startCounters.observe(counter); });
-    </script>
+        // --- 3. DYNAMIC FORM TRANSITION CONTROL INTERACTIVE ENGINE ---
+        function triggerFormAnimation(event) {
+            event.preventDefault(); 
+            
+            const overlay = document.getElementById('formSuccessOverlay');
+            overlay.classList.add('triggered');
+        }
+    </style>
 </body>
 </html>
