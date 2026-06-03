@@ -65,7 +65,8 @@
             margin: 0 auto;
         }
 
-        /* Tiny Sparkle Style Element */
+        /* --- SPARKLING CURSOR ENGINES CSS --- */
+        /* 1. Existing Blue Hover Trail Sparkle */
         .sparkle {
             position: fixed;
             width: 6px;
@@ -82,6 +83,23 @@
         @keyframes sparkleFade {
             0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        /* 2. Colorful Click Burst Particle Layer */
+        .click-spark {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            animation: clickSparkFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes clickSparkFade {
+            0% { transform: translate(-50%, -50%) translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) translate(var(--mx), var(--my)) scale(0); opacity: 0; }
         }
 
         /* --- STICKY NAVIGATION HEADER --- */
@@ -139,12 +157,10 @@
             align-items: center;
         }
 
-        /* Pure CSS Hidden Checkbox for Mobile Triggering */
         #menu-toggle {
             display: none;
         }
 
-        /* Animated Hamburger Icon Style */
         .hamburger-label {
             display: none;
             cursor: pointer;
@@ -565,7 +581,7 @@
             /* Shift Navigation panel to an off-screen mobile drawer overlay */
             .nav-links {
                 position: fixed;
-                top: 86px; /* Below standard header bar spacing */
+                top: 86px; 
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 86px);
@@ -780,6 +796,42 @@
                 setTimeout(() => {
                     sparkle.remove();
                 }, 800);
+            }
+        });
+
+        // --- 1.1 NEW: MULTI-COLORED CLICK BURST PARTICLE ENGINE ---
+        window.addEventListener('click', function(e) {
+            const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
+            const particleCount = 12;
+
+            for (let i = 0; i < particleCount; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'click-spark';
+                
+                spark.style.left = e.clientX + 'px';
+                spark.style.top = e.clientY + 'px';
+                
+                const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+                const randomSize = Math.random() * 6 + 4;
+                
+                spark.style.backgroundColor = randomColor;
+                spark.style.width = randomSize + 'px';
+                spark.style.height = randomSize + 'px';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 80 + 30; 
+                const mx = Math.cos(angle) * distance + 'px';
+                const my = Math.sin(angle) * distance + 'px';
+                
+                spark.style.setProperty('--mx', mx);
+                spark.style.setProperty('--my', my);
+                spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+
+                document.body.appendChild(spark);
+
+                setTimeout(() => {
+                    spark.remove();
+                }, 600);
             }
         });
 
