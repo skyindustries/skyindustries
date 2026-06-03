@@ -65,7 +65,8 @@
             margin: 0 auto;
         }
 
-        /* Tiny Sparkle Style Element */
+        /* --- SPARKLING CURSOR ENGINES CSS --- */
+        /* 1. Existing Blue Hover Trail Sparkle */
         .sparkle {
             position: fixed;
             width: 6px;
@@ -82,6 +83,23 @@
         @keyframes sparkleFade {
             0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        /* 2. New Colored Click Burst Sparkle */
+        .click-spark {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            animation: clickSparkFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes clickSparkFade {
+            0% { transform: translate(-50%, -50%) translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) translate(var(--mx), var(--my)) scale(0); opacity: 0; }
         }
 
         /* --- MAGNETIC / GLOWING INTERACTION COMPONENTS --- */
@@ -181,18 +199,6 @@
             font-weight: 400;
         }
 
-        /* --- DYNAMIC TRANSITION INTERSECTORS --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* --- STICKY TRANSPARENT HEADER --- */
         header {
             background-color: rgba(255, 255, 255, 0.9);
@@ -212,7 +218,6 @@
             position: relative;
         }
 
-        /* Combined Logo Brand Wrapper */
         .logo-block {
             display: flex;
             align-items: center;
@@ -243,18 +248,15 @@
             color: var(--primary-blue);
         }
 
-        /* Navigation Links & Functional Mobile Toggle Container */
         .nav-menu-wrapper {
             display: flex;
             align-items: center;
         }
 
-        /* Pure CSS Hidden Checkbox for Mobile Triggering */
         #menu-toggle {
             display: none;
         }
 
-        /* Animated Hamburger Icon Style */
         .hamburger-label {
             display: none;
             cursor: pointer;
@@ -856,50 +858,6 @@
             font-size: 0.88rem;
         }
 
-        /* --- KEYFRAME ANIMATION ARCS --- */
-        @keyframes textShine {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes revealDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes revealUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes technicalFlow {
-            from { background-position: 0 0; }
-            to { background-position: 1000px 1000px; }
-        }
-
-        @keyframes morphGraphic {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
-        @keyframes floatModule {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-15px) rotate(1deg); }
-        }
-        @keyframes waveFlow {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @keyframes pulseNode {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-        }
-        @keyframes pulseBar {
-            0% { left: -30%; }
-            100% { left: 100%; }
-        }
-
         /* --- RESPONSIVE DEVICE COMPLIANCE --- */
         @media (max-width: 1200px) {
             .hero h1 { font-size: 4rem; }
@@ -909,15 +867,13 @@
             .hero h1 { font-size: 3.4rem; }
             .assurance-text { padding: 70px 6%; }
             
-            /* Show Mobile Hamburger UI Elements */
             .hamburger-label {
                 display: block;
             }
 
-            /* Shift Navigation panel to an off-screen mobile drawer overlay */
             .nav-links {
                 position: fixed;
-                top: 86px; /* Below standard header bar spacing */
+                top: 86px; 
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 86px);
@@ -938,12 +894,10 @@
                 padding: 15px 0;
             }
 
-            /* Toggle Action via CSS Checkbox Control Selector Rules */
             #menu-toggle:checked ~ .nav-links {
                 left: 0;
             }
 
-            /* Hamburger transform states to clean '✕' layout shape */
             #menu-toggle:checked ~ .hamburger-label .bar:nth-child(1) {
                 transform: translateY(8px) rotate(45deg);
                 background-color: var(--primary-blue);
@@ -1072,7 +1026,7 @@
                     </div>
                     <div class="product-info">
                         <h3>Installation Accessories</h3>
-                        <p>An extensive network of matching couplings, high-strength deep bends, and safe junction components for precise fits.</p>
+                        <p>An expansive range of matching couplings, robust bends, and long-lasting anchors for specialized fits.</p>
                         <a href="products.html" class="product-link">Discover Full Catalog →</a>
                     </div>
                 </div>
@@ -1210,6 +1164,50 @@
                 setTimeout(() => {
                     sparkle.remove();
                 }, 800);
+            }
+        });
+
+        // --- 0.1 NEW: MULTI-COLORED CLICK BURST PARTICLE ENGINE ---
+        window.addEventListener('click', function(e) {
+            // Colors matching the advanced electrical industrial palette
+            const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
+            const particleCount = 12; // Number of tiny sparks spawned per click
+
+            for (let i = 0; i < particleCount; i++) {
+                const spark = document.createElement('div');
+                spark.className = 'click-spark';
+                
+                // Set spawning anchor points directly at cursor location
+                spark.style.left = e.clientX + 'px';
+                spark.style.top = e.clientY + 'px';
+                
+                // Randomize particle properties
+                const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+                const randomSize = Math.random() * 6 + 4; // Tiny random sizes
+                
+                spark.style.backgroundColor = randomColor;
+                spark.style.width = randomSize + 'px';
+                spark.style.height = randomSize + 'px';
+                
+                // Generate unique trajectory vectors (distances to shoot outward)
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 80 + 30; // Explodes outward by 30px to 110px
+                const mx = Math.cos(angle) * distance + 'px';
+                const my = Math.sin(angle) * distance + 'px';
+                
+                // Pass travel distance values directly into CSS animation variables
+                spark.style.setProperty('--mx', mx);
+                spark.style.setProperty('--my', my);
+                
+                // Add high-voltage bloom shadow matching its generated color
+                spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+
+                document.body.appendChild(spark);
+
+                // Housekeeping: remove element node from page layout tree after animation expires
+                setTimeout(() => {
+                    spark.remove();
+                }, 600);
             }
         });
 
