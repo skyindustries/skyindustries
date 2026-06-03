@@ -65,7 +65,8 @@
             margin: 0 auto;
         }
 
-        /* Tiny Sparkle Style Element */
+        /* --- SPARKLING CURSOR ENGINES CSS --- */
+        /* 1. Standard Blue Hover Trail Sparkle */
         .sparkle {
             position: fixed;
             width: 6px;
@@ -82,6 +83,23 @@
         @keyframes sparkleFade {
             0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        /* 2. High-Voltage Electric Click Arc Burst */
+        .click-spark {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            animation: clickSparkFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes clickSparkFade {
+            0% { transform: translate(-50%, -50%) translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) translate(var(--mx), var(--my)) scale(0); opacity: 0; }
         }
 
         /* --- STICKY NAVIGATION HEADER --- */
@@ -133,18 +151,15 @@
             color: var(--primary-blue);
         }
 
-        /* Navigation Links & Functional Mobile Toggle Container */
         .nav-menu-wrapper {
             display: flex;
             align-items: center;
         }
 
-        /* Pure CSS Hidden Checkbox for Mobile Triggering */
         #menu-toggle {
             display: none;
         }
 
-        /* Animated Hamburger Icon Style */
         .hamburger-label {
             display: none;
             cursor: pointer;
@@ -198,7 +213,7 @@
             width: 100%;
         }
 
-        /* --- INNER PAGE BANNER (NO IMAGE, PURE TEXTURED GRADIENT) --- */
+        /* --- INNER PAGE BANNER --- */
         .page-banner {
             background: linear-gradient(135deg, #050E22 0%, #0D1F42 100%);
             color: var(--white);
@@ -472,385 +487,3 @@
         }
 
         .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 60px;
-            font-size: 1.15rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* --- TYPICAL INDUSTRIAL FOOTER --- */
-        footer {
-            background-color: var(--dark-grey);
-            color: #92979B;
-            padding: 100px 0 40px 0;
-            font-size: 0.95rem;
-            border-top: 6px solid #141619;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-about h3, .footer-links h3, .footer-contact h3 {
-            color: var(--white);
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            font-weight: 800;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 14px;
-        }
-
-        .footer-links ul li a {
-            transition: var(--transition-smooth);
-        }
-
-        .footer-links ul li a:hover {
-            color: var(--white);
-            padding-left: 12px;
-        }
-
-        .footer-contact p {
-            margin-bottom: 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #232629;
-            padding-top: 40px;
-            text-align: center;
-            font-size: 0.88rem;
-        }
-
-        /* --- RESPONSIVE DEVICE COMPLIANCE --- */
-        @media (max-width: 992px) {
-            .product-focus-card { flex-direction: column; }
-            .product-focus-details { padding: 40px; }
-            .calc-container { padding: 30px; }
-            
-            /* Show Mobile Hamburger UI Elements */
-            .hamburger-label {
-                display: block;
-            }
-
-            /* Shift Navigation panel to an off-screen mobile drawer overlay */
-            .nav-links {
-                position: fixed;
-                top: 86px; /* Below standard header bar spacing */
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 86px);
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                align-items: center;
-                gap: 30px;
-                padding-top: 50px;
-                transition: left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-                box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-                z-index: 1000;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                width: 100%;
-                text-align: center;
-                padding: 15px 0;
-            }
-
-            /* Toggle Action via CSS Checkbox Control Selector Rules */
-            #menu-toggle:checked ~ .nav-links {
-                left: 0;
-            }
-
-            /* Hamburger transform states to clean '✕' layout shape */
-            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-                background-color: var(--primary-blue);
-            }
-            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(2) {
-                opacity: 0;
-            }
-            #menu-toggle:checked ~ .hamburger-label .bar:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-                background-color: var(--primary-blue);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo-block img { height: 55px; }
-            .brand-title { font-size: 1.3rem; letter-spacing: 0.5px; }
-            .page-banner h1 { font-size: 2.6rem; }
-            .section-title { font-size: 2.2rem; }
-            .price-display { font-size: 2.2rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container nav-container">
-            <div class="logo-block">
-                <img src="logo.png" alt="Sky Industries Logo Icon">
-                <div class="brand-title">Sky <span>Industries</span></div>
-            </div>
-            
-            <nav class="nav-menu-wrapper">
-                <input type="checkbox" id="menu-toggle">
-                
-                <label for="menu-toggle" class="hamburger-label">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </label>
-
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html" class="active">Products</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="page-banner">
-        <div class="container">
-            <h1>Product Architecture</h1>
-            <p>Commercial-grade PVC profiles engineered specifically for maximum dielectric safety and long structural lifespan parameters.</p>
-        </div>
-    </section>
-
-    <section class="catalog-section">
-        <div class="container">
-            
-            <div class="product-focus-card">
-                <div class="product-focus-img">
-                    <img src="casing-patti.png" alt="PVC Casing Patti Lineup">
-                </div>
-                <div class="product-focus-details">
-                    <div class="catalog-tag">Primary Production Line</div>
-                    <h2>PVC Casing (Patti)</h2>
-                    <p>Our flagship product line designed with high impact strength, premium lock-fitting mechanics, and completely flame-retardant elements. Specifically optimized for modern neat surface wiring requirements in large architectural complexes.</p>
-                    
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Size (mm)</th>
-                                    <th>Pieces / Pack</th>
-                                    <th>Weight (Kg)</th>
-                                    <th>Standard Base Rate</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>20 / 12</td>
-                                    <td>200 Pcs</td>
-                                    <td>28 kg</td>
-                                    <td>3200/-</td>
-                                </tr>
-                                <tr>
-                                    <td>25 / 12</td>
-                                    <td>100 Pcs</td>
-                                    <td>28 kg</td>
-                                    <td>3200/-</td>
-                                </tr>
-                                <tr>
-                                    <td>25 / 16</td>
-                                    <td>100 Pcs</td>
-                                    <td>28 kg</td>
-                                    <td>3300/-</td>
-                                </tr>
-                                <tr>
-                                    <td>30 / 15</td>
-                                    <td>100 Pcs</td>
-                                    <td>28 kg</td>
-                                    <td>3300/-</td>
-                                </tr>
-                                <tr>
-                                    <td>32 / 12</td>
-                                    <td>100 Pcs</td>
-                                    <td>28 kg</td>
-                                    <td>3400/-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-focus-card">
-                <div class="product-focus-img">
-                    <img src="conduit-pipes.png" alt="Electrical Conduit Pipes Lineup">
-                </div>
-                <div class="product-focus-details">
-                    <div class="catalog-tag">Heavy Duty Insulation</div>
-                    <h2>Electrical Conduit Pipes</h2>
-                    <p>Engineered structurally seamless with extra smooth interior wall layers to significantly reduce pull friction during wiring. Highly stress-tested against compression loads, bending fractures, and extreme temperature conditions across heavy industrial environments.</p>
-                    
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Diameter Range</th>
-                                    <th>Wall Thickness Spec</th>
-                                    <th>Standard Colors</th>
-                                    <th>Application Range</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>19 mm / 20 mm</td>
-                                    <td>Light / Medium / Heavy</td>
-                                    <td>Ivory White / Black / Grey</td>
-                                    <td>Concealed & Surface Wiring</td>
-                                </tr>
-                                <tr>
-                                    <td>25 mm</td>
-                                    <td>Medium / Heavy Duty</td>
-                                    <td>Ivory White / Grey</td>
-                                    <td>Commercial Building Grids</td>
-                                </tr>
-                                <tr>
-                                    <td>32 mm / 40 mm</td>
-                                    <td>Industrial Heavy Wall</td>
-                                    <td>Dark Grey / Custom White</td>
-                                    <td>Heavy Infrastructure Infrastructure</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-focus-card">
-                <div class="product-focus-img">
-                    <img src="accessories.png" alt="Electrical Installation Fittings">
-                </div>
-                <div class="product-focus-details">
-                    <div class="catalog-tag">Precision Accessories</div>
-                    <h2>Installation Accessories</h2>
-                    <p>A full complementary engineering lineup of structural couplings, heavy multi-way deep surface junction boxes, precision bends, and structural clips. Built using matching polymer compounds to guarantee uniform durability across the entire infrastructure network layout.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="calculator-section">
-        <div class="container">
-            <h2 class="section-title">Wholesale Estimation Hub</h2>
-            <p class="section-subtitle">Select your standard PVC sizing configuration and input bulk requirements to instantly display custom live wholesale baseline rates.</p>
-            
-            <div class="calc-container">
-                <div class="calc-grid">
-                    <div class="input-block">
-                        <label for="productSelect">Select Sizing Profile</label>
-                        <select id="productSelect">
-                            <option value="3200" data-name="20/12 Patti">Casing Patti - 20/12 (₹3200/Pack)</option>
-                            <option value="3200" data-name="25/12 Patti">Casing Patti - 25/12 (₹3200/Pack)</option>
-                            <option value="3300" data-name="25/16 Patti">Casing Patti - 25/16 (₹3300/Pack)</option>
-                            <option value="3300" data-name="30/15 Patti">Casing Patti - 30/15 (₹3300/Pack)</option>
-                            <option value="3400" data-name="32/12 Patti">Casing Patti - 32/12 (₹3400/Pack)</option>
-                        </select>
-                    </div>
-                    <div class="input-block">
-                        <label for="quantityInput">Required Packs (Pack Vol)</label>
-                        <input type="number" id="quantityInput" min="1" value="10" placeholder="Enter package quantities">
-                    </div>
-                </div>
-
-                <div class="calc-output-window">
-                    <h4>Estimated Commercial Batch Valuation</h4>
-                    <div class="price-display" id="totalPriceDisplay">₹32,000</div>
-                    <p class="calc-note">Note: Display valuations represent base factory wholesale rates. Taxes, loading profiles, and customized bulk dispatch discounts are computed directly via official quotes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-grid">
-            <div class="footer-about">
-                <h3>Sky Industries</h3>
-                <p>Trusted manufacturers and nationwide wholesale suppliers of high-grade industrial electrical raw components engineered safely for residential, commercial, and macro infrastructure layouts.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Navigation Hub</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Regional Factory & Head Office</h3>
-                <p>📍 610, Godutai Vidi, Gharkul Parodekar, South MIDC, Solapur, Maharashtra – 413006, India</p>
-                <p>📞 +91 8830597554</p>
-                <p>🌐 skyindustries.store</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Sky Industries. All Rights Reserved. | Infrastructure Built For Safety. Made To Last.</p>
-        </div>
-    </footer>
-
-    <script>
-        // --- 1. BLUE SPARKLING CURSOR TRAIL ENGINE ---
-        window.addEventListener('mousemove', function(e) {
-            if (Math.random() > 0.4) { 
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                
-                const customSize = Math.random() * 5 + 4;
-                sparkle.style.width = customSize + 'px';
-                sparkle.style.height = customSize + 'px';
-
-                document.body.appendChild(sparkle);
-
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 800);
-            }
-        });
-
-        // Close dynamic mobile nav panel automatically if user selects a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('menu-toggle').checked = false;
-            });
-        });
-
-        // --- 2. LIVE WHolesale AUTOMATED ESTIMATOR MATH ENGINE ---
-        const productSelect = document.getElementById('productSelect');
-        const quantityInput = document.getElementById('quantityInput');
-        const totalPriceDisplay = document.getElementById('totalPriceDisplay');
-
-        function calculateEstimation() {
-            const baseRate = parseFloat(productSelect.value);
-            const packs = parseInt(quantityInput.value) || 0;
-            const total = baseRate * packs;
-            
-            // Format to Indian Currency Standards smoothly
-            totalPriceDisplay.innerText = "₹" + total.toLocaleString('en-IN');
-        }
-
-        // Event listener hooks for live fluid updates
-        productSelect.addEventListener('change', calculateEstimation);
-        quantityInput.addEventListener('input', calculateEstimation);
-    </script>
-</body>
-</html>
