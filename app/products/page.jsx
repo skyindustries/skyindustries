@@ -1,146 +1,208 @@
-"use client";
+// app/page.jsx
+'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export default function AboutPage() {
-    const [menuOpen, setMenuOpen] = useState(false);
+export default function Page() {
+  useCursorEffects();
+  useScrollReveal();
 
-    useEffect(() => {
-        // --- SPARKLING CURSOR TRAIL ENGINE ---
-        const handleMouseMoveSparkle = (e) => {
-            if (Math.random() > 0.4) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
+  return (
+    <>
+      {/* Hero & core messaging from index.html */}
+      <section className="page-banner home-banner">
+        <div className="container">
+          <h1>
+            High-Capacity Manufacturing &amp; Precision Global Supply of Premium Grade
+            Electrical Raw Components.
+          </h1>
+          <p>
+            Engineered robustly to meet meticulous compliance requirements across residential,
+            commercial, and massive public infrastructure layouts.
+          </p>
+        </div>
+      </section>
 
-                const customSize = Math.random() * 5 + 4;
-                sparkle.style.width = customSize + 'px';
-                sparkle.style.height = customSize + 'px';
+      <section className="catalog-section home-section">
+        <div className="container">
+          {/* 4 core feature blocks exactly as in your copy */}
+          <div className="feature-grid">
+            <div className="feature-card">
+              <h2>Premium Grade Precision</h2>
+              <p>
+                High impact-resistant layout built custom-made for completely safe, neat, and
+                flame-retardant interior electrical wiring setups.
+              </p>
+              <a href="/products" className="feature-link">
+                View Pricing &amp; Size Matrix →
+              </a>
+            </div>
 
-                document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 800);
-            }
-        };
+            <div className="feature-card">
+              <h2>Industrial Safety Scale</h2>
+              <p>
+                Heavy-duty, structurally seamless conduits designed for premium insulation routing
+                and architectural structural permanence.
+              </p>
+              <a href="/products" className="feature-link">
+                Analyze Technical Specs →
+              </a>
+            </div>
 
-        window.addEventListener('mousemove', handleMouseMoveSparkle);
+            <div className="feature-card">
+              <h2>Commercial Dimensions</h2>
+              <p>
+                An expansive range of matching couplings, robust bends, and long-lasting anchors for
+                specialized fits.
+              </p>
+              <a href="/products" className="feature-link">
+                Discover Full Catalog →
+              </a>
+            </div>
 
-        // --- MULTI-COLORED CLICK BURST ENGINE ---
-        const handleClickSparkle = (e) => {
-            const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
-            for (let i = 0; i < 12; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'click-spark';
-                spark.style.left = e.clientX + 'px';
-                spark.style.top = e.clientY + 'px';
+            <div className="feature-card">
+              <h2>On-Time Supply Match</h2>
+              <p>
+                Fully equipped to handle continuous, timed multi-ton drop distribution runs smoothly
+                across major construction layouts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
-                const randomSize = Math.random() * 6 + 4;
+      {/* Production integrity / structural uniformity block */}
+      <section className="home-section production-section">
+        <div className="container">
+          <h2 className="section-title">
+            How we maintain top world-class structural uniformity across millions of custom raw
+            units every single month.
+          </h2>
 
-                spark.style.backgroundColor = randomColor;
-                spark.style.width = randomSize + 'px';
-                spark.style.height = randomSize + 'px';
+          <div className="grid-two">
+            <div className="text-block reveal">
+              <p>
+                Selection of clean, ultra-dense baseline granules for absolute raw material
+                integrity. Advanced automated hot-mold profiling creates continuous architectural
+                wall-thickness consistency.
+              </p>
+              <p>
+                Aggressive break-testing runs ensure maximum structural resilience under high heat
+                and sudden impact loads. Secure freight loading and fast logistics deployment
+                directly delivered straight onto your construction site.
+              </p>
+            </div>
 
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 80 + 30;
-                spark.style.setProperty('--mx', Math.cos(angle) * distance + 'px');
-                spark.style.setProperty('--my', Math.sin(angle) * distance + 'px');
-                spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+            <div className="text-block reveal">
+              <p>
+                Engineered strictly to survive aggressive physical wear, high structural stress, and
+                long mechanical lifespans. Formulated carefully using premium safety compounds to
+                offer completely secure non-conductive property layers.
+              </p>
+              <p>
+                Direct from our regional production floor grids, giving major commercial pricing
+                leverage over standard intermediaries. Fully equipped to handle continuous, timed
+                multi-ton drop distribution runs smoothly across major construction layouts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
 
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 600);
-            }
-        };
+/**
+ * Sparkle & click burst effects
+ * (reuse same engine as other pages so animations stay identical)
+ */
+function useCursorEffects() {
+  useEffect(() => {
+    const mouseHandler = (e) => {
+      if (Math.random() > 0.4) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${e.clientX}px`;
+        sparkle.style.top = `${e.clientY}px`;
 
-        window.addEventListener('click', handleClickSparkle);
+        const customSize = Math.random() * 5 + 4;
+        sparkle.style.width = `${customSize}px`;
+        sparkle.style.height = `${customSize}px`;
 
-        // --- SCROLL VIEW REVEAL ENGINE ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+        document.body.appendChild(sparkle);
 
-        revealElements.forEach(element => revealOnScroll.observe(element));
+        setTimeout(() => {
+          sparkle.remove();
+        }, 800);
+      }
+    };
 
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMoveSparkle);
-            window.removeEventListener('click', handleClickSparkle);
-            revealOnScroll.disconnect();
-        };
-    }, []);
+    const clickHandler = (e) => {
+      const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
+      const particleCount = 12;
 
-    return (
-        <>
-            <header>
-                <div className="container nav-container">
-                    <div className="logo-block">
-                        <img src="/logo.png" alt="Sky Industries Logo Icon" />
-                        <div className="brand-title">Sky <span>Industries</span></div>
-                    </div>
-                    
-                    <nav className="nav-menu-wrapper">
-                        <div className={`hamburger-label ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                        </div>
+      for (let i = 0; i < particleCount; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'click-spark';
 
-                        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                            <li><a href="/" onClick={() => setMenuOpen(false)}>Home</a></li>
-                            <li><a href="/products" onClick={() => setMenuOpen(false)}>Products</a></li>
-                            <li><a href="/about" className="active" onClick={() => setMenuOpen(false)}>About Us</a></li>
-                            <li><a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
 
-            <section className="inner-hero">
-                <div className="container">
-                    <h1>Our Infrastructure Heritage</h1>
-                    <p>Building the backbone of electrical safety and structural integrity since our inception.</p>
-                </div>
-            </section>
+        const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+        const randomSize = Math.random() * 6 + 4;
 
-            <main className="container product-catalog-section" style={{ paddingTop: '80px' }}>
-                <div className="product-segment reveal">
-                    <div className="grid-two-col">
-                        <div className="product-details-content">
-                            <h3>Rooted in Precision and Safety</h3>
-                            <p>Sky Industries was founded on a singular vision: to eliminate structural vulnerabilities in modern electrical layouts. By controlling the entire manufacturing pipeline—from baseline granule selection to precision extrusion—we guarantee an industrial-grade standard that commercial buyers and wholesale distributors can trust blindly.</p>
-                            <p>Our regional factory floor in Solapur operates under strict compliance mandates, ensuring that every meter of casing and conduit pipe meets extreme impact and thermal resistance metrics.</p>
-                        </div>
-                        <div className="product-visual-wrapper">
-                            {/* Placeholder for an inner factory or team image */}
-                            <img src="/factory-floor.png" alt="Sky Industries Production Floor" />
-                        </div>
-                    </div>
-                </div>
-            </main>
+        spark.style.backgroundColor = randomColor;
+        spark.style.width = `${randomSize}px`;
+        spark.style.height = `${randomSize}px`;
 
-            <footer>
-                {/* Same footer block as your other pages */}
-                <div className="container footer-grid">
-                    <div className="footer-about">
-                        <h3>Sky Industries</h3>
-                        <p>Trusted manufacturers and nationwide wholesale suppliers of high-grade industrial electrical raw components engineered safely for residential, commercial, and macro infrastructure layouts.</p>
-                    </div>
-                    <div className="footer-contact">
-                        <h3>Regional Factory & Head Office</h3>
-                        <p>📍 610, Godutai Vidi, Gharkul Parodekar, South MIDC, Solapur, Maharashtra – 413006, India</p>
-                        <p>📞 +91 8830597554</p>
-                        <p>🌐 skyindustries.store</p>
-                    </div>
-                </div>
-                <div className="footer-bottom">
-                    <p>&copy; 2026 Sky Industries. All Rights Reserved. | Infrastructure Built For Safety. Made To Last.</p>
-                </div>
-            </footer>
-        </>
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 80 + 30;
+        const mx = `${Math.cos(angle) * distance}px`;
+        const my = `${Math.sin(angle) * distance}px`;
+
+        spark.style.setProperty('--mx', mx);
+        spark.style.setProperty('--my', my);
+        spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+
+        document.body.appendChild(spark);
+
+        setTimeout(() => {
+          spark.remove();
+        }, 600);
+      }
+    };
+
+    window.addEventListener('mousemove', mouseHandler);
+    window.addEventListener('click', clickHandler);
+
+    return () => {
+      window.removeEventListener('mousemove', mouseHandler);
+      window.removeEventListener('click', clickHandler);
+    };
+  }, []);
+}
+
+/**
+ * Scroll reveal for `.reveal` elements
+ */
+function useScrollReveal() {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
     );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 }
