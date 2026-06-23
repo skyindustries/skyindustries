@@ -1,146 +1,333 @@
-"use client";
+// app/products/page.jsx
+'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-export default function AboutPage() {
-    const [menuOpen, setMenuOpen] = useState(false);
+export default function Page() {
+  useCursorEffects();
+  useScrollReveal();
 
-    useEffect(() => {
-        // --- SPARKLING CURSOR TRAIL ENGINE ---
-        const handleMouseMoveSparkle = (e) => {
-            if (Math.random() > 0.4) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
+  return (
+    <>
+      {/* Banner */}
+      <section className="page-banner">
+        <div className="container">
+          <h1>Product Architecture</h1>
+          <p>
+            Commercial-grade PVC profiles engineered specifically for maximum dielectric safety
+            and long structural lifespan parameters.
+          </p>
+        </div>
+      </section>
 
-                const customSize = Math.random() * 5 + 4;
-                sparkle.style.width = customSize + 'px';
-                sparkle.style.height = customSize + 'px';
+      {/* Catalog cards + tables */}
+      <section className="catalog-section">
+        <div className="container">
+          {/* PVC Casing Patti */}
+          <div className="product-focus-card reveal">
+            <div className="product-focus-img">
+              <img src="/casing-patti.png" alt="PVC Casing Patti Lineup" />
+            </div>
+            <div className="product-focus-details">
+              <div className="catalog-tag">Primary Production Line</div>
+              <h2>PVC Casing (Patti)</h2>
+              <p>
+                Our flagship product line designed with high impact strength, premium lock-fitting
+                mechanics, and completely flame-retardant elements. Specifically optimized for modern
+                neat surface wiring requirements in large architectural complexes.
+              </p>
 
-                document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 800);
-            }
-        };
+              <div className="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Size (mm)</th>
+                      <th>Pieces / Pack</th>
+                      <th>Weight (Kg)</th>
+                      <th>Material Composition &amp; Thermal Properties</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>20 / 12</td>
+                      <td>200 Pcs</td>
+                      <td>28 kg</td>
+                      <td>High-Impact Rigid FR-PVC | Non-Corrosive</td>
+                    </tr>
+                    <tr>
+                      <td>25 / 12</td>
+                      <td>100 Pcs</td>
+                      <td>28 kg</td>
+                      <td>High-Impact Rigid FR-PVC | UV Stabilized</td>
+                    </tr>
+                    <tr>
+                      <td>25 / 16</td>
+                      <td>100 Pcs</td>
+                      <td>28 kg</td>
+                      <td>Heavy-Duty Insulation Compound</td>
+                    </tr>
+                    <tr>
+                      <td>30 / 15</td>
+                      <td>100 Pcs</td>
+                      <td>28 kg</td>
+                      <td>Self-Extinguishing Polymer Matrix</td>
+                    </tr>
+                    <tr>
+                      <td>32 / 12</td>
+                      <td>100 Pcs</td>
+                      <td>28 kg</td>
+                      <td>Reinforced Wall Structure | Anti-Aging</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-        window.addEventListener('mousemove', handleMouseMoveSparkle);
+          {/* Conduit pipes */}
+          <div className="product-focus-card reveal">
+            <div className="product-focus-img">
+              <img src="/conduit-pipes.png" alt="Electrical Conduit Pipes Lineup" />
+            </div>
+            <div className="product-focus-details">
+              <div className="catalog-tag">Heavy Duty Insulation</div>
+              <h2>Electrical Conduit Pipes</h2>
+              <p>
+                Engineered structurally seamless with extra smooth interior wall layers to
+                significantly reduce pull friction during wiring. Highly stress-tested against
+                compression loads, bending fractures, and extreme temperature conditions across
+                heavy industrial environments.
+              </p>
 
-        // --- MULTI-COLORED CLICK BURST ENGINE ---
-        const handleClickSparkle = (e) => {
-            const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
-            for (let i = 0; i < 12; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'click-spark';
-                spark.style.left = e.clientX + 'px';
-                spark.style.top = e.clientY + 'px';
+              <div className="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Diameter Range</th>
+                      <th>Wall Thickness Spec</th>
+                      <th>Standard Colors</th>
+                      <th>Application Range</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>19 mm / 20 mm</td>
+                      <td>Light / Medium / Heavy</td>
+                      <td>Ivory White / Black / Grey</td>
+                      <td>Concealed &amp; Surface Wiring Layouts</td>
+                    </tr>
+                    <tr>
+                      <td>25 mm</td>
+                      <td>Medium / Heavy Duty</td>
+                      <td>Ivory White / Grey</td>
+                      <td>Commercial Building Grids &amp; Office Fitouts</td>
+                    </tr>
+                    <tr>
+                      <td>32 mm / 40 mm</td>
+                      <td>Industrial Heavy Wall</td>
+                      <td>Dark Grey / Custom White</td>
+                      <td>Heavy Public Infrastructure Development</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-                const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
-                const randomSize = Math.random() * 6 + 4;
+          {/* Accessories */}
+          <div className="product-focus-card reveal">
+            <div className="product-focus-img">
+              <img src="/accessories.png" alt="Electrical Installation Fittings" />
+            </div>
+            <div className="product-focus-details">
+              <div className="catalog-tag">Precision Accessories</div>
+              <h2>Installation Accessories</h2>
+              <p>
+                A full complementary engineering lineup of structural couplings, heavy multi-way
+                deep surface junction boxes, precision bends, and structural clips. Built using
+                matching polymer compounds to guarantee uniform durability across the entire
+                infrastructure network layout.
+              </p>
 
-                spark.style.backgroundColor = randomColor;
-                spark.style.width = randomSize + 'px';
-                spark.style.height = randomSize + 'px';
+              <div className="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Accessory Type</th>
+                      <th>Compatibility Matrix</th>
+                      <th>Mechanical Connection</th>
+                      <th>Safety Certification</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Precision Bends</td>
+                      <td>Fits 19mm, 20mm, 25mm Pipes</td>
+                      <td>Smooth Friction Slip-On Fit</td>
+                      <td>Flame-Retardant Certified</td>
+                    </tr>
+                    <tr>
+                      <td>Junction Boxes</td>
+                      <td>1-Way to 4-Way Surface Outlets</td>
+                      <td>Deep Box Internal Threading</td>
+                      <td>High Dielectric Strength Insulation</td>
+                    </tr>
+                    <tr>
+                      <td>Couplings &amp; Clips</td>
+                      <td>All Standard Profile Adaptations</td>
+                      <td>Heavy Snap-Lock Mechanism</td>
+                      <td>Impact-Resistant Structural Polymer</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 80 + 30;
-                spark.style.setProperty('--mx', Math.cos(angle) * distance + 'px');
-                spark.style.setProperty('--my', Math.sin(angle) * distance + 'px');
-                spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+      {/* Technical info hub */}
+      <section className="specs-info-section">
+        <div className="container">
+          <h2 className="section-title reveal">Technical Information Hub</h2>
+          <p className="section-subtitle reveal">
+            Our material blueprints are calibrated to surpass strict global testing benchmarks for
+            structural endurance and electrical isolation.
+          </p>
 
-                document.body.appendChild(spark);
-                setTimeout(() => spark.remove(), 600);
-            }
-        };
+          <div className="info-grid">
+            <div className="info-card reveal">
+              <div className="info-icon">🔥</div>
+              <h3>Fire Retardant Class</h3>
+              <p>
+                Formulated with self-extinguishing compounds that halt flame propagation within
+                seconds of ignition sources being removed.
+              </p>
+            </div>
 
-        window.addEventListener('click', handleClickSparkle);
+            <div className="info-card reveal">
+              <div className="info-icon">⚡</div>
+              <h3>Dielectric Strength</h3>
+              <p>
+                Provides highly secure non-conductive property layers to handle voltage routing
+                safety parameters across continuous workloads.
+              </p>
+            </div>
 
-        // --- SCROLL VIEW REVEAL ENGINE ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+            <div className="info-card reveal">
+              <div className="info-icon">🔨</div>
+              <h3>Mechanical Resilience</h3>
+              <p>
+                Aggressive break-testing runs ensure maximum structural profile retention during
+                bending maneuvers and hard drop stresses.
+              </p>
+            </div>
 
-        revealElements.forEach(element => revealOnScroll.observe(element));
+            <div className="info-card reveal">
+              <div className="info-icon">🧪</div>
+              <h3>Chemical &amp; Acid Shield</h3>
+              <p>
+                Immune to concrete structural moisture degradation, alkaline compounds, and regional
+                soil atmospheric aging variations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
 
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMoveSparkle);
-            window.removeEventListener('click', handleClickSparkle);
-            revealOnScroll.disconnect();
-        };
-    }, []);
+/**
+ * Cursor sparkle & click burst effects
+ */
+function useCursorEffects() {
+  useEffect(() => {
+    const mouseHandler = (e) => {
+      if (Math.random() > 0.4) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${e.clientX}px`;
+        sparkle.style.top = `${e.clientY}px`;
 
-    return (
-        <>
-            <header>
-                <div className="container nav-container">
-                    <div className="logo-block">
-                        <img src="/logo.png" alt="Sky Industries Logo Icon" />
-                        <div className="brand-title">Sky <span>Industries</span></div>
-                    </div>
-                    
-                    <nav className="nav-menu-wrapper">
-                        <div className={`hamburger-label ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                        </div>
+        const customSize = Math.random() * 5 + 4;
+        sparkle.style.width = `${customSize}px`;
+        sparkle.style.height = `${customSize}px`;
 
-                        <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                            <li><a href="/" onClick={() => setMenuOpen(false)}>Home</a></li>
-                            <li><a href="/products" onClick={() => setMenuOpen(false)}>Products</a></li>
-                            <li><a href="/about" className="active" onClick={() => setMenuOpen(false)}>About Us</a></li>
-                            <li><a href="/contact" onClick={() => setMenuOpen(false)}>Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
+        document.body.appendChild(sparkle);
 
-            <section className="inner-hero">
-                <div className="container">
-                    <h1>Our Infrastructure Heritage</h1>
-                    <p>Building the backbone of electrical safety and structural integrity since our inception.</p>
-                </div>
-            </section>
+        setTimeout(() => {
+          sparkle.remove();
+        }, 800);
+      }
+    };
 
-            <main className="container product-catalog-section" style={{ paddingTop: '80px' }}>
-                <div className="product-segment reveal">
-                    <div className="grid-two-col">
-                        <div className="product-details-content">
-                            <h3>Rooted in Precision and Safety</h3>
-                            <p>Sky Industries was founded on a singular vision: to eliminate structural vulnerabilities in modern electrical layouts. By controlling the entire manufacturing pipeline—from baseline granule selection to precision extrusion—we guarantee an industrial-grade standard that commercial buyers and wholesale distributors can trust blindly.</p>
-                            <p>Our regional factory floor in Solapur operates under strict compliance mandates, ensuring that every meter of casing and conduit pipe meets extreme impact and thermal resistance metrics.</p>
-                        </div>
-                        <div className="product-visual-wrapper">
-                            {/* Placeholder for an inner factory or team image */}
-                            <img src="/factory-floor.png" alt="Sky Industries Production Floor" />
-                        </div>
-                    </div>
-                </div>
-            </main>
+    const clickHandler = (e) => {
+      const sparkColors = ['#00FFCC', '#007BFF', '#FF3366', '#77B5FE', '#FFFFFF'];
+      const particleCount = 12;
 
-            <footer>
-                {/* Same footer block as your other pages */}
-                <div className="container footer-grid">
-                    <div className="footer-about">
-                        <h3>Sky Industries</h3>
-                        <p>Trusted manufacturers and nationwide wholesale suppliers of high-grade industrial electrical raw components engineered safely for residential, commercial, and macro infrastructure layouts.</p>
-                    </div>
-                    <div className="footer-contact">
-                        <h3>Regional Factory & Head Office</h3>
-                        <p>📍 610, Godutai Vidi, Gharkul Parodekar, South MIDC, Solapur, Maharashtra – 413006, India</p>
-                        <p>📞 +91 8830597554</p>
-                        <p>🌐 skyindustries.store</p>
-                    </div>
-                </div>
-                <div className="footer-bottom">
-                    <p>&copy; 2026 Sky Industries. All Rights Reserved. | Infrastructure Built For Safety. Made To Last.</p>
-                </div>
-            </footer>
-        </>
+      for (let i = 0; i < particleCount; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'click-spark';
+
+        spark.style.left = `${e.clientX}px`;
+        spark.style.top = `${e.clientY}px`;
+
+        const randomColor = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+        const randomSize = Math.random() * 6 + 4;
+
+        spark.style.backgroundColor = randomColor;
+        spark.style.width = `${randomSize}px`;
+        spark.style.height = `${randomSize}px`;
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 80 + 30;
+        const mx = `${Math.cos(angle) * distance}px`;
+        const my = `${Math.sin(angle) * distance}px`;
+
+        spark.style.setProperty('--mx', mx);
+        spark.style.setProperty('--my', my);
+        spark.style.boxShadow = `0 0 8px ${randomColor}, 0 0 15px ${randomColor}`;
+
+        document.body.appendChild(spark);
+
+        setTimeout(() => {
+          spark.remove();
+        }, 600);
+      }
+    };
+
+    window.addEventListener('mousemove', mouseHandler);
+    window.addEventListener('click', clickHandler);
+
+    return () => {
+      window.removeEventListener('mousemove', mouseHandler);
+      window.removeEventListener('click', clickHandler);
+    };
+  }, []);
+}
+
+/**
+ * Scroll reveal for `.reveal` elements
+ */
+function useScrollReveal() {
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
     );
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 }
